@@ -1,0 +1,65 @@
+/*
+The code that follows is for the ORP-Droid Control Console which controls the two ORP-Droids.
+The Online Robot Project webpage can be found at: http://online-robot-project.sotabots.com
+The assembly instructions can be found there. The rest of the code can be found on GITHub at:
+https://github.com/NorthEmpireCo/Online_Robot_Project This project is sponsored by the SOTABots.
+This project is under the GNU GENERAL PUBLIC LICENSE V.2 1991.
+Author: Avery D. Reich-Norris
+Company: Northern Empire Companies
+*/
+
+/*
+TABLE OF CONTTENTS
+  Section Title-Line Number
+   ~Sub-section Title-Line Number
+  Imports-
+  Object List-
+  Arduino Port Setup-
+  Command Loop-
+  Drive Commands
+   ~ORP-Droid A
+   ~ORP-Droid B
+  
+*/
+
+/*
+This section includes the right libraries
+*/
+#include <Wire.h> //Includes the wire library
+#include <Adafruit_MotorShield.h> //Includes the MotorShield library
+#include "utility/Adafruit_PWMServoDriver.h" //Includes the PWM Servo Driver library
+
+/*
+This Section is where the objects are defined
+*/
+//MotorShield
+Adafruit_MotorShield shield = Adafruit_MotorShield(); //defines the MotorShield
+//ORP-Droid A
+Adafruit_DCMotor* leftMotorA = shield.getMotor(1); //defines the left motor for ORP-Droid A
+Adafruit_DCMotor* rightMotorA = shield.getMotor(2); //defines the right motor for ORP-Droid A
+//ORP-Droid B
+Adafruit_DCMotor* leftMotorB = shield.getMotor(3); //defines the left motor for ORP-Droid B
+Adafruit_DCMotor* rightMotorB = shield.getMotor(4); //defines the right motor for ORP-Droid B
+//Important Integers
+int frequency = 1600; //Defines an integer for MotorShield Frequency
+int initMotorSpd = 200; //Defines an integer for initial motor speed
+
+// This function sets up the ports on the Arduino
+void setup() {
+  //Begins the shield processes
+  shield.begin(frequency);  // create with the variable frequency
+  //AFMS.begin() create with the default frequency 1.6KHz
+  
+  //Set the inital speed of the motors based on a variable from 0(Full Stop)-255(Max Speed)
+  //ORP-Droid A
+  leftMotorA->setSpeed(initMotorSpd);
+  rightMotorA->setSpeed(initMotorSpd);
+  ORP-Droid B
+  leftMotorB->setSpeed(initMotorSpd);
+  rightMotorB->setSpeed(initMotorSpd);
+}
+
+// This function loops forever as long as the Arduino has power
+void loop() {
+  //Insert looped code information here
+}
