@@ -92,25 +92,46 @@ void setup() {
 // This function loops forever as long as the Arduino has power
 void loop() {
 	//Checks direction for ORP-Droid A left motor 
-  if(digitalRead(leftFwdA) == HIGH and digitRead(leftBWDA) == LOW){
+  if(digitalRead(leftFwdA) == HIGH and digitRead(leftBwdA) == LOW){
   	leftDriveA(FORWARD);
   }
-  else if(digitalRead(leftFwdA) == LOW and digitRead(leftBWDA) == HIGH){
+  else if(digitalRead(leftFwdA) == LOW and digitRead(leftBwdA) == HIGH){
   	leftDriveA(BACKWARD);
   }
   else{
   	leftDriveA(RELEASE);
   }
-  //Checks direction for ORP-Droid A left motor 
-  if(digitalRead(leftFwdA) == HIGH and digitRead(leftBWDA) == LOW){
-  	leftDriveA(FORWARD);
+  //Checks direction for ORP-Droid A right motor 
+  if(digitalRead(rightFwdA) == HIGH and digitRead(rightBwdA) == LOW){
+  	rightDriveA(FORWARD);
   }
-  else if(digitalRead(leftFwdA) == LOW and digitRead(leftBWDA) == HIGH){
-  	leftDriveA(BACKWARD);
+  else if(digitalRead(leftFwdA) == LOW and digitRead(rightBwdA) == HIGH){
+  	rightDriveA(BACKWARD);
   }
   else{
-  	leftDriveA(RELEASE);
+  	rightDriveA(RELEASE);
   }
+  //Checks direction for ORP-Droid B left motor 
+  if(digitalRead(leftFwdB) == HIGH and digitRead(leftBwdB) == LOW){
+  	leftDriveB(FORWARD);
+  }
+  else if(digitalRead(leftFwdB) == LOW and digitRead(leftBwdB) == HIGH){
+  	leftDriveB(BACKWARD);
+  }
+  else{
+  	leftDriveB(RELEASE);
+  }
+  //Checks direction for ORP-Droid B right motor 
+  if(digitalRead(rightFwdB) == HIGH and digitRead(rightBwdB) == LOW){
+  	rightDriveB(FORWARD);
+  }
+  else if(digitalRead(rightFwdB) == LOW and digitRead(rightBwdB) == HIGH){
+  	rightDriveB(BACKWARD);
+  }
+  else{
+  	rightDriveB(RELEASE);
+  }
+  delay(50);
 }
 
 //This function run the left motor for ORP-Droid A in a defined direction
