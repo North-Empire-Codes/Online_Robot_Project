@@ -1,6 +1,7 @@
 /*
 The code that follows is for the ORP-Droid Control Console which controls the two ORP-Droids.
-The ORP-Droid Control Console uses this http://www.adafruit.com/products/1438 MotorShield and
+The ORP-Droid Control Console uses this
+http://www.adafruit.com/products/1438 MotorShield and
 an Arduino to control both ORP-Droid A and B at the same time. It is also connected to a
 Raspberry Pi, via digital input ports, which is connected the the Online Robot Project webpage.
 The Online Robot Project webpage can be found at: http://online-robot-project.sotabots.com
@@ -13,7 +14,7 @@ Company: Northern Empire Companies
 */
 
 /*
-TABLE OF CONTTENTS
+TABLE OF CONTENTS
   Section Title-Line Number
    ~Sub-section Title-Line Number
   Imports-
@@ -53,13 +54,28 @@ Adafruit_DCMotor* rightMotorB = shield.getMotor(4); //defines the right motor fo
 int frequency = 1600; //Defines an integer for MotorShield Frequency
 int motorSpd = 200; //Defines an integer for motor speed
 //Digital Input/Output Pin List
-int leftInA = 1; //Defines the left motor information pin from the Raspberry Pi for ORP-Droid A
-int rightInA = 2; //Defines the right motor information pin from the Raspberry Pi for ORP-Droid A
-int leftInB = 3; //Defines the left motor information pin from the Raspberry Pi for ORP-Droid B
-int rightInB = 4; //Defines the right motor information pin from the Raspberry Pi for ORP-Droid B
+int leftFwdA = 1; //Defines the forward left motor information pin from the Raspberry Pi for ORP-Droid A
+int leftBwdA = 2; //Defines the backward left motor information pin from the Raspberry Pi for ORP-Droid A
+int rightFwdA = 3; //Defines the forward right motor information pin from the Raspberry Pi for ORP-Droid A
+int rightBwdA = 4; //Defines the backward right motor information pin from the Raspberry Pi for ORP-Droid A 
+int leftFwdB = 5; //Defines the forward left motor information pin from the Raspberry Pi for ORP-Droid B
+int leftBwdB = 6; //Defines the backward left motor information pin from the Raspberry Pi for ORP-Droid B
+int rightFwdB = 7; //Defines the forward right motor information pin from the Raspberry Pi for ORP-Droid B
+int rightBwdB = 8; //Defines the backward right motor information pin from the Raspberry Pi for ORP-Droid B
 
 // This function sets up the ports on the Arduino
 void setup() {
+  //Setup Input Pins
+  //ORP-Droid A
+  pinMode(leftSlowA, INPUT);
+  pinMode(leftFastA, INPUT);
+  pinMode(rightSlowA, INPUT);
+  pinMode(rightFastA, INPUT);
+  //ORP-Droid B
+  pinMode(leftSlowB, INPUT);
+  pinMode(leftFastB, INPUT);
+  pinMode(rightSlowB, INPUT);
+  pinMode(rightFastB, INPUT);
   //Begins the shield processes
   shield.begin(frequency);  // create with the variable frequency
   //AFMS.begin() create with the default frequency 1.6KHz
@@ -75,5 +91,38 @@ void setup() {
 
 // This function loops forever as long as the Arduino has power
 void loop() {
-  //Insert looped code information here
+	//Checks direction for ORP-Droid A left motor 
+  if(digitalRead(leftFwdA) == HIGH and digitRead(leftBWDA) == LOW){
+  	leftDriveA(FORWARD);
+  }
+  else if(digitalRead(leftFwdA) == LOW and digitRead(leftBWDA) == HIGH){
+  	leftDriveA(BACKWARD);
+  }
+  else{
+  	leftDriveA(RELEASE);
+  }
+  //Checks direction for ORP-Droid A left motor 
+  if(digitalRead(leftFwdA) == HIGH and digitRead(leftBWDA) == LOW){
+  	leftDriveA(FORWARD);
+  }
+  else if(digitalRead(leftFwdA) == LOW and digitRead(leftBWDA) == HIGH){
+  	leftDriveA(BACKWARD);
+  }
+  else{
+  	leftDriveA(RELEASE);
+  }
+}
+
+//This function run the left motor for ORP-Droid A in a defined direction
+void leftDriveA(command){
+	leftMotorA->run(command);
+}
+void rightDriveA(command){
+	rightMotorA->run(command);
+}
+void leftDriveB(command){
+	leftMotorB->run(command);
+}
+void rightDriveB(command){
+	rightMotorB->run(command);
 }
