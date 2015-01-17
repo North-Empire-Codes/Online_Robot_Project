@@ -59,7 +59,6 @@ void setup() {
 // This function loops forever as long as the Arduino has power
 void loop() {
   input = Serial.read();
-  
   //Checks direction for ORP-Droid A left motor 
   if(input == 65/*Looks for an A*/){
   	leftMotorA->run(FORWARD);
@@ -70,7 +69,7 @@ void loop() {
   else if(input == 67/*Looks for a C*/){
   	leftMotorA->run(RELEASE);
   }
-  //Checks direction for ORP-Droid A right motor 
+  //Checks direction for ORP-Droid A right motor
   else if(input == 69/*Looks for a D*/){
   	rightMotorA->run(FORWARD);
   }
@@ -85,7 +84,7 @@ void loop() {
   	leftMotorB->run(FORWARD);
   }
   else if(input == 86 /*Looks for a V*/){
-  	leftMotor->run(BACKWARD);
+  	leftMotorB->run(BACKWARD);
   }
   else if(input == 87 /*Looks for a W*/){
   	leftMotorB->run(RELEASE);
@@ -95,10 +94,10 @@ void loop() {
   	rightMotorB->run(FORWARD);
   }
   else if(input == 89 /*Looks for a Y*/){
-  	rightMotorB(BACKWARD);
+  	rightMotorB->run(BACKWARD);
   }
   else if(input == 90 /*Looks for a Z*/){
-  	rightMotorB(RELEASE);
+  	rightMotorB->run(RELEASE);
   }
   delay(10);
 }
