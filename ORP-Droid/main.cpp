@@ -38,6 +38,19 @@ int motorSpd = 100; //Defines an integer for motor speed
 int serialFrequency = 9600; //Defines an integer for serial port frequency
 int input = -1; //Initializes the input variable
 
+//Commands in ASCII format
+int A = 65 //Character for A
+int B = 66 //Character for B
+int C = 67 //Character for C
+int D = 68 //Character for D
+int E = 69 //Character for E
+int F = 70 //Character for F
+int U = 85 //Character for U
+int V = 86 //Character for V
+int W = 87 //Character for W
+int X = 88 //Character for X
+int Y = 89 //Character for Y
+int Z = 90 //Character for Z
 
 // This function sets up the ports on the Arduino
 void setup() {
@@ -60,43 +73,43 @@ void setup() {
 void loop() {
   input = Serial.read();
   //Checks direction for ORP-Droid A left motor 
-  if(input == 65/*Looks for an A*/){
+  if(input == A){
   	leftMotorA->run(FORWARD);
   }
-  else if(input == 66/*Looks for a B*/){
+  else if(input == B){
   	leftMotorA->run(BACKWARD);
   }
-  else if(input == 67/*Looks for a C*/){
+  else if(input == C){
   	leftMotorA->run(RELEASE);
   }
   //Checks direction for ORP-Droid A right motor
-  else if(input == 69/*Looks for a D*/){
+  else if(input == D){
   	rightMotorA->run(FORWARD);
   }
-  else if(input == 70 /*Looks for an E*/){
+  else if(input == E){
   	rightMotorA->run(BACKWARD);
   }
-  else if(input == 71 /*Looks for an F*/){
+  else if(input == F){
   	rightMotorA->run(RELEASE);
   }
   //Checks direction for ORP-Droid B left motor 
-  else if(input == 85 /*Looks for a U*/){
+  else if(input == U){
   	leftMotorB->run(FORWARD);
   }
-  else if(input == 86 /*Looks for a V*/){
+  else if(input == V){
   	leftMotorB->run(BACKWARD);
   }
-  else if(input == 87 /*Looks for a W*/){
+  else if(input == W){
   	leftMotorB->run(RELEASE);
   }
   //Checks direction for ORP-Droid B right motor 
-  else if(input == 88 /*Looks for an X*/){
+  else if(input == X){
   	rightMotorB->run(FORWARD);
   }
-  else if(input == 89 /*Looks for a Y*/){
+  else if(input == Y){
   	rightMotorB->run(BACKWARD);
   }
-  else if(input == 90 /*Looks for a Z*/){
+  else if(input == Z){
   	rightMotorB->run(RELEASE);
   }
   delay(10);
