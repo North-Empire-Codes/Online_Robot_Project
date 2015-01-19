@@ -1,63 +1,64 @@
 #!/usr/bin/python
+
 #Imports Serial into Python
 import serial
-#Sets up serial port
-def initStream(port, frequency):
-        print "Initializing serial port %s with frequency %i..." %(port, frequency)
+
+#Function to initialize stream
+def initializeStream(portPath, frequency):
+        #Makes variable stream global
         global stream
-        stream = serial.Serial(port, frequency)
-        print "Serial stream initialized"
-#Sends a byte over the stream
-def send(command):
-        if(stream.isOpen()):
-                print "Sending %s over stream..." %(command)
-                stream.write(command)
-                print "Command sent"
-        else:
-                print "Error could not send %s over stream. Stream is closed attempting to open..." %(command)
-                openStream()
-#Receives a byte over the stream
-def receive():
-        if(stream.isOpen):
-                print "Receiving..."
-                return stream.readline()
-        else:
-                print "Error could not receive byte over stream. Stream is closed attempting to open..."
-                openStream()
-#Opens Stream
+        print "Initializing stream with the port path '%s' with the frequency of %d..." %(portPath, frequency)
+        stream = serial.Serial(portPath, frequency)
+        print "Done initializing"
+
+#Function to open stream
 def openStream():
-        tries = 1
-        while(not stream.isOpen()):
+        #Checks if stream is closed
+        if(not stream.isOpen()):
                 print "Opening stream..."
                 stream.open()
+                #Checks if stream opened
                 if(stream.isOpen()):
-                        print "Stream successfully opened"
-                        break
+                        print "Stream opened"
                 else:
-                        print "Serial port failed to open retry %i of 5" %(tries)
-                        tries =+ 1
-                        if(tries > 5):
-                                print "Failed 5 times please check your ports and try again later"
-                                print "Exiting..."
-                                exit()
+                        print "Error could not open stream"
         else:
                 print "Stream already opened"
-#Closes Stream
+
+#Function to close stream
 def closeStream():
-        tries = 1
-        while(stream.isOpen()):
+        #Checks if stream is open
+        if(stream.isOpen()):
                 print "Closing stream..."
                 stream.close()
+                #Checks if stream closed
                 if(not stream.isOpen()):
-                        print "Stream successfully closed"
-                        break
+                        print "Stream closed"
                 else:
-                        print "Serial port failed to close retry %i of 5" %(tries)
-                        tries =+ 1
-                        if(tries > 5):
-                                print "Failed 5 times please check your ports for internal issues"
-                                print "System will now exit"
-                                print "Exiting..."
-                                exit()
+                        print "Error could not close stream"
         else:
                 print "Stream already closed"
+
+#Function to send data
+def send(data):
+        #Checks if stream is opened
+        if(stream.isOpen()):
+                #Writes data to the serial stream
+                print "Sending %s over stream..." %(data)
+                stream.write(data)
+                print "Data sent"
+        else:
+                print "Cannot send %s over stream. Stream is not open" %(data)
+                openStream()
+
+def receive():
+        #Checks if stream is opened
+        if(stream.isOpen()):
+                #Receives data from stream
+                print "Looking for data over stream..."
+                input = stream.readline()
+                print "Data found"
+                return input
+        else:
+                print "Cannot receive data over stream. Stream is not open"
+                openStream()
