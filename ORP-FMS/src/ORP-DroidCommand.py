@@ -1,40 +1,100 @@
 #!/usr/bin/python
-#Imports Serial Stream module
+
+#Imports
+#Import Serial Streamer
 from SerialStream import *
+#Import sleep timer
 from time import sleep
+
 #Variables
-ORPDroidChannel = "/dev/ttyACM0"
-frequency = 9600
-#Initializes stream on ORP-Droid COM port and frequency
-initStream(ORPDroidChannel, frequency)
-#Makes sure the port is open
-openStream()
-#Sends 3 command to ORP-Droid
-send("AAA")
-sleep(4)
-send("DDD")
-sleep(4)
-send("CCC")
-sleep(4)
-send("FFF")
-sleep(4)
+#ORP-Droid path variable
+ORPDroidPath = "/dev/ttyACM0"
+#ORP-Droid Arduino baudrate
+baudrate = 9600
+#Test timer in seconds
+testTimer = 4
 
-#
-#Command List
-#A-A Left Forward
-#B-A Left Backward
-#C-A Left Stop
-#D-A Right Forward
-#E-A Right Backward
-#F-A Right Stop
-#U-B Left Forward
-#V-B Left Backward
-#W-B Left Stop
-#X-B Right Forward
-#Y-B Right BackWard
-#Z-B Right Stop
-#
+#Commands
+#Uses ASCII character references
 
-#Closes Serial port
-closeStream()
-exit()
+#ORP-Droid A left motor commands
+leftFwdA = "A" #Character for forward
+leftBwdA = "B" #Character for backard
+leftStopA = "C" #Character for stop
+
+#ORP-Droid A right motor commands
+rightFwdA = "D" #Character for forward
+rightBwdA = "E" #Character for backward
+rightStopA = "F" #Character for stop
+
+#ORP-Droid B left motor commands
+leftFwdB = "U" #Character for forward
+leftBwdB = "V" #Character for backward
+leftStopB = "W" #Character for stop
+
+#ORP-Droid B right motor commands
+rightFwdB = "X" #Character for forward
+rightBwdB = "Y" #Character for backward
+rightStopB = "Z" #Character for stop
+
+
+def main():
+        initializeStream(ORPDroidPath, baudrate)
+        openStream()
+        fullTest()
+        closeStream()
+        print "Exiting..."
+        exit()
+
+
+def fullTest():
+        #Runs test of all the commands
+        print "Test 1"
+        send(leftFwdA)
+        sleep(testTimer)
+
+        print "Test 2"
+        send(leftBwdA)
+        sleep(testTimer)
+
+        print "Test 3"
+        send(leftStopA)
+        sleep(testTimer)
+
+        print "Test 4"
+        send(rightFwdA)
+        sleep(testTimer)
+
+        print "Test 5"
+        send(rightBwdA)
+        sleep(testTimer)
+
+        print "Test 6"
+        send(rightStopA)
+        sleep(testTimer)
+
+        print "Test 7"
+        send(leftFwdB)
+        sleep(testTimer)
+
+        print "Test 8"
+        send(leftBwdB)
+        sleep(testTimer)
+
+        print "Test 9"
+        send(leftStopB)
+        sleep(testTimer)
+
+        print "Test 10"
+        send(rightFwdB)
+        sleep(testTimer)
+
+        print "Test 11"
+        send(rightBwdB)
+        sleep(testTimer)
+
+        print "Test 12"
+        send(rightStopB)
+        sleep(testTimer)
+
+main()
