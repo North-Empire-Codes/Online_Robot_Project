@@ -39,18 +39,18 @@ int serialFrequency = 9600; //Defines an integer for serial port frequency
 int input = -1; //Initializes the input variable
 
 //Commands in ASCII format
-int A = 65 //Character for A
-int B = 66 //Character for B
-int C = 67 //Character for C
-int D = 68 //Character for D
-int E = 69 //Character for E
-int F = 70 //Character for F
-int U = 85 //Character for U
-int V = 86 //Character for V
-int W = 87 //Character for W
-int X = 88 //Character for X
-int Y = 89 //Character for Y
-int Z = 90 //Character for Z
+int A = 65; //Character for A
+int B = 66; //Character for B
+int C = 67; //Character for C
+int D = 68; //Character for D
+int E = 69; //Character for E
+int F = 70; //Character for F
+int U = 85; //Character for U
+int V = 86; //Character for V
+int W = 87; //Character for W
+int X = 88; //Character for X
+int Y = 89; //Character for Y
+int Z = 90; //Character for Z
 
 // This function sets up the ports on the Arduino
 void setup() {
