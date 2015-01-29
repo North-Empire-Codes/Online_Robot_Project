@@ -38,14 +38,53 @@ rightBwdB = "Y" #Character for backward
 rightStopB = "Z" #Character for stop
 
 
-def main():
+def start():
         initializeStream(ORPDroidPath, baudrate)
         openStream()
-        fullTest()
+
+def end():
         closeStream()
-        print "Exiting..."
         exit()
 
+def droidAFwd():
+        send(leftFwdA)
+        send(rightFwdA)
+        
+def droidALeft():
+        send(leftBwdA)
+        send(rightFwdA)
+
+def droidABwd():
+        send(leftBwdA)
+        send(rightBwdA)
+        
+def droidARight():
+        send(leftFwdA)
+        send(rightBwdA)
+        
+def droidAStop():
+        send(leftStopA)
+        send(rightStopB)
+        
+def droidBFwd():
+        send(leftFwdB)
+        send(rightFwdB)
+        
+def droidBLeft():
+        send(leftBwdB)
+        send(rightFwdB)
+        
+def droidBBwd():
+        send(leftBwdB)
+        send(rightBwdB)
+        
+def droidBRight():
+        send(leftFwdB)
+        send(rightBwdB)
+        
+def droidStopB():
+        send(leftStopB)
+        send(rightStopB)
 
 def fullTest():
         #Runs test of all the commands
@@ -97,4 +136,3 @@ def fullTest():
         send(rightStopB)
         sleep(testTimer)
 
-main()
